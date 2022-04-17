@@ -67,7 +67,7 @@ void loop() {
     client.println("Connection: close");
     client.println();
     client.println();
-    client.stop();
+    //client.stop();
   }else {
     Serial.println("--> connection failed\n");
   }
