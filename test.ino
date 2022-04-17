@@ -49,7 +49,7 @@ void loop() {
   Serial.print("X: " + String(x));
   Serial.print("\tY: " + String(y));
   Serial.println("P: " + String(bottone));
-  if(client.connect(server,8000) && (x=1 || x=-1 || y=1 || y=-1 || bottone=1)){
+  if(client.connect(server,8000) && (x==1 || x==-1 || y==1 || y==-1 || bottone==1)){
     client.print("GET /test/write_data.php?");
     Serial.print("GET /test/write_data.php?");
     client.print("valuex=");
