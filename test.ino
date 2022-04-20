@@ -4,8 +4,8 @@ byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 IPAddress ip(192,168,1,200);
 
-#define JOYSTICK_X 4
-#define JOYSTICK_Y 5
+#define JOYSTICK_X A0
+#define JOYSTICK_Y A1
 #define JOYSTICK_BOTTONE 2
 //int xx = 0, yy = 0;
 IPAddress server(192,168,1,103);//il mio
@@ -14,16 +14,13 @@ EthernetClient client;
 void setup() {
   Serial.begin(9600);
   pinMode(JOYSTICK_BOTTONE, INPUT_PULLUP);
-  pinMode(JOYSTICK_X, INPUT);
-  digitalWrite(JOYSTICK_X, HIGH);
-  pinMode(JOYSTICK_Y, INPUT);
-  digitalWrite(JOYSTICK_Y, HIGH);
+  
   Ethernet.begin(mac, ip);
 }
 
 void loop() {
-  //int x = !digitalRead(JOYSTICK_X);
-  //int y = !digitalRead(JOYSTICK_Y);
+  int x = analogRead(JOYSTICK_X);
+  int y = analogRead(JOYSTICK_Y);
   int bottone = !digitalRead(JOYSTICK_BOTTONE);
   
   /*  if(x > 600){
@@ -49,8 +46,8 @@ void loop() {
     //Serial.println("alto: " + String(contatorey));
   }
 */
-  Serial.print("X: " + String(digitalRead(JOYSTICK_X)));
-  Serial.print("\tY: " + String(digitalRead(JOYSTICK_Y)));
+  Serial.print("X: " + String(x));
+  Serial.print("\tY: " + String(y));
   Serial.println("P: " + String(bottone));
   if(client.connect(server,8000) && (digitalRead(JOYSTICK_X)==1 || digitalRead(JOYSTICK_X)==-1 || digitalRead(JOYSTICK_Y)==1 
                                      || digitalRead(JOYSTICK_Y)==-1 || bottone==1)){
