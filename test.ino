@@ -53,7 +53,7 @@ void loop() {
   Serial.print("\tY: " + digitalRead(JOYSTICK_Y));
   Serial.println("P: " + String(bottone));
   if(client.connect(server,8000) && (digitalRead(JOYSTICK_X)==1 || digitalRead(JOYSTICK_X)==-1 || digitalRead(JOYSTICK_Y)==1 
-                                     || digitalRead(JOYSTICK_y)==-1 || bottone==1)){
+                                     || digitalRead(JOYSTICK_Y)==-1 || bottone==1)){
     client.print("GET /test/write_data.php?");
     Serial.print("GET /test/write_data.php?");
     client.print("valuex=");
