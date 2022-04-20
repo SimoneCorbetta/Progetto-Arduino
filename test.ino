@@ -49,8 +49,8 @@ void loop() {
     //Serial.println("alto: " + String(contatorey));
   }
 */
-  Serial.print("X: " + digitalRead(JOYSTICK_X));
-  Serial.print("\tY: " + digitalRead(JOYSTICK_Y));
+  Serial.print("X: " + String(digitalRead(JOYSTICK_X)));
+  Serial.print("\tY: " + String(digitalRead(JOYSTICK_Y)));
   Serial.println("P: " + String(bottone));
   if(client.connect(server,8000) && (digitalRead(JOYSTICK_X)==1 || digitalRead(JOYSTICK_X)==-1 || digitalRead(JOYSTICK_Y)==1 
                                      || digitalRead(JOYSTICK_Y)==-1 || bottone==1)){
