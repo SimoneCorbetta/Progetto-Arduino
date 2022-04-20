@@ -14,13 +14,16 @@ EthernetClient client;
 void setup() {
   Serial.begin(9600);
   pinMode(JOYSTICK_BOTTONE, INPUT_PULLUP);
-
+  pinMode(JOYSTICK_X, INPUT);
+  digitalWrite(JOYSTICK_X, HIGH);
+  pinMode(JOYSTICK_Y, INPUT);
+  digitalWrite(JOYSTICK_Y, HIGH);
   Ethernet.begin(mac, ip);
 }
 
 void loop() {
-  int x = !digitalRead(JOYSTICK_X);
-  int y = !digitalRead(JOYSTICK_Y);
+  //int x = !digitalRead(JOYSTICK_X);
+  //int y = !digitalRead(JOYSTICK_Y);
   int bottone = !digitalRead(JOYSTICK_BOTTONE);
   
   /*  if(x > 600){
@@ -46,20 +49,21 @@ void loop() {
     //Serial.println("alto: " + String(contatorey));
   }
 */
-  Serial.print("X: " + String(x));
-  Serial.print("\tY: " + String(y));
+  Serial.print("X: " + digitalRead(JOYSTICK_X));
+  Serial.print("\tY: " + digitalRead(JOYSTICK_Y));
   Serial.println("P: " + String(bottone));
-  if(client.connect(server,8000) && (x==1 || x==-1 || y==1 || y==-1 || bottone==1)){
+  if(client.connect(server,8000) && (digitalRead(JOYSTICK_X)==1 || digitalRead(JOYSTICK_X)==-1 || digitalRead(JOYSTICK_Y)==1 
+                                     || digitalRead(JOYSTICK_y)==-1 || bottone==1)){
     client.print("GET /test/write_data.php?");
     Serial.print("GET /test/write_data.php?");
     client.print("valuex=");
     Serial.print("valuex=");
-    client.print(x);
-    Serial.print(x);
+    client.print(digitalRead(JOYSTICK_X));
+    Serial.print(digitalRead(JOYSTICK_X));
     client.print("&valuey=");
     Serial.print("&valuey=");
-    client.print(y);
-    Serial.print(y);
+    client.print(digitalRead(JOYSTICK_Y));
+    Serial.print(digitalRead(JOYSTICK_Y));
     client.print("&valuep=");
     Serial.print("&valuep=");
     client.print(bottone);
