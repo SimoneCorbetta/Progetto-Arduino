@@ -24,33 +24,26 @@ void loop() {
   int bottone = !digitalRead(JOYSTICK_BOTTONE);
   
    if(x > 600){
-    //contatorex++;
     xx = 1;
-    //Serial.println(xx);
-    //Serial.println("destra: " + String(contatorex));
+
   }else if(x < 400){
-    //contatorex--;
     xx = -1;
-    //Serial.println(xx);
-    //Serial.println("sinistra: " + String(contatorex));
+   
   }else if(y > 600){
-    //contatorey--;
     yy = -1;
-    //Serial.println(yy);
-    //Serial.println("basso: " + String(contatorey));
     
   }else if(y < 400){
-    //contatorey++;
     yy = 1;
-    //Serial.println(yy);
-    //Serial.println("alto: " + String(contatorey));
   }
 
   Serial.print("X: " + String(xx));
   Serial.print("\tY: " + String(yy));
   Serial.println("P: " + String(bottone));
-  if(client.connect(server,8000) && (digitalRead(JOYSTICK_X)==1 || digitalRead(JOYSTICK_X)==-1 || digitalRead(JOYSTICK_Y)==1 
-                                     || digitalRead(JOYSTICK_Y)==-1 || bottone==1)){
+  
+  
+  
+  if(client.connect(server,8000)){
+    if(xx==1 || xx==-1 || yy==1 || yy==-1){
     client.print("GET /test/write_data.php?");
     Serial.print("GET /test/write_data.php?");
     client.print("valuex=");
@@ -73,6 +66,9 @@ void loop() {
     client.println();
     client.println();
     //client.stop();
+    }else{
+      Serial.println("--> non funziona\n");
+    }
   }else {
     Serial.println("--> connection failed\n");
   }
