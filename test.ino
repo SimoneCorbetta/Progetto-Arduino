@@ -44,8 +44,8 @@ void loop() {
   
   if(client.connect(server,8000)){
     if(xx==1 || xx==-1 || yy==1 || yy==-1){
-    client.print("GET Labirinth/php/insertdata.php?");
-    Serial.print("GET Labirinth/php/insertdata.php?");
+    client.print("GET Labyrinth/php/insertdata.php?");
+    Serial.print("GET Labyrinth/php/insertdata.php?");
     client.print("valuex=");
     Serial.print("valuex=");
     client.print(digitalRead(JOYSTICK_X));
